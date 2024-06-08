@@ -37,11 +37,7 @@ public class Layout {
         start.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                frame.getContentPane().removeAll();
-                Levels levels = new Levels(frame);
-                frame.add(levels);
-                frame.validate();
-                levels.requestFocusInWindow();
+                new Login(frame);  // Show the Login dialog
             }
         });
 
