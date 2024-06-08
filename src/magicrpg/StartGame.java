@@ -10,8 +10,10 @@ class StartGame extends JPanel {
     private Image backgroundImage;
     private Character character;
     private ArrayList<Enemy> enemies;
+    private int level;
 
-    StartGame() {
+    StartGame(int level) {
+        this.level = level;
         // Load the background image
         backgroundImage = new ImageIcon("gameBG.png").getImage();
 
@@ -55,12 +57,15 @@ class StartGame extends JPanel {
 
         // Create Enemy objects with the new images and add them to the panel
         enemies = new ArrayList<>();
-        Enemy enemy1 = new Enemy(enemyWhite, 100, 100, 5, 5);
-        Enemy enemy2 = new Enemy(enemyGrey, 200, 200, 5, 5);
-        enemies.add(enemy1);
-        enemies.add(enemy2);
-        panel1.add(enemy1);
-        panel1.add(enemy2);
+        
+        for (int i = 0; i < level; i++) {
+            enemies.add(new Enemy(enemyWhite, 100 + i * 50, 100, 5, 5));
+            enemies.add(new Enemy(enemyGrey, 200 + i * 50, 200, 5, 5));
+        }
+
+        for (Enemy enemy : enemies) {
+            panel1.add(enemy);
+        }
 
         // Create a Timer to update the position of the enemies every 100 milliseconds
         Timer enemyTimer = new Timer(100, new ActionListener() {

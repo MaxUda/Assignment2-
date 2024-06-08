@@ -44,41 +44,41 @@ class Levels extends JPanel {
         level1Label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startGame(frame);
+                startGame(frame, 1);
             }
         });
         level2Label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startGame(frame);
+                startGame(frame, 2);
             }
         });
         level3Label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startGame(frame);
+                startGame(frame, 3);
             }
         });
         level4Label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startGame(frame);
+                startGame(frame, 4);
             }
         });
         level5Label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startGame(frame);
+                startGame(frame, 5);
             }
         });
         level6Label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                startGame(frame);
+                startGame(frame, 6);
             }
         });
 
-        // Add the labels to the panel
+        // Add the level labels to the panel
         add(level1Label);
         add(level2Label);
         add(level3Label);
@@ -87,17 +87,18 @@ class Levels extends JPanel {
         add(level6Label);
     }
 
-    private static ImageIcon resizeImage(ImageIcon icon, int width, int height) {
-        Image image = icon.getImage();
-        Image newImage = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH);
-        return new ImageIcon(newImage);
+    // Method to start the game with the specified level
+    private void startGame(JFrame frame, int level) {
+        frame.getContentPane().removeAll(); // Remove all components
+        frame.getContentPane().add(new StartGame(level)); // Add the game panel with the specified level
+        frame.revalidate(); // Refresh the frame
+        frame.repaint(); // Repaint the frame
     }
 
-    private void startGame(JFrame frame) {
-        frame.getContentPane().removeAll();
-        StartGame startGame = new StartGame();
-        frame.add(startGame);
-        frame.validate();
-        startGame.requestFocusInWindow();
+    // Method to resize an image
+    private ImageIcon resizeImage(ImageIcon originalImage, int width, int height) {
+        Image image = originalImage.getImage(); // transform it
+        Image newimg = image.getScaledInstance(width, height, java.awt.Image.SCALE_SMOOTH); // resize it
+        return new ImageIcon(newimg); // transform it back
     }
 }
